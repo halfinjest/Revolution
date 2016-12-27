@@ -32,7 +32,7 @@ int main()
 	setup();
 	printf("\x1b[2;0H");
 	roll(LENGTH);
-	printf("Press the HOME button to return, or press the A button to roll again.\n");
+	printf("Press the HOME button to return or the A button to roll again.\n");
 	while(TRUE)
 	{
 		WPAD_ScanPads();
