@@ -30,15 +30,13 @@ int main()
 {
 	srand(time(NULL));
 	setup();
-	printf("\x1b[2;0H");
-	roll(LENGTH);
-	printf("Press the HOME button to return or the A button to roll again.\n");
+	printf("\x1b[2;0HPress A to roll or HOME to return.\n");
 	while(TRUE)
 	{
 		WPAD_ScanPads();
 		u32 button = WPAD_ButtonsDown(0);
-		if (button & WPAD_BUTTON_HOME) exit(0);
-		else if (button & WPAD_BUTTON_A) roll(LENGTH);
+		if (button & WPAD_BUTTON_A) roll(LENGTH);
+		else if (button & WPAD_BUTTON_HOME) exit(0);
 		VIDEO_WaitVSync();
 	}
 	return 0;
