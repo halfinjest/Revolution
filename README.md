@@ -2,9 +2,9 @@
 
 Programs for the Nintendo Wii (Revolution) through the Homebrew Channel.
 
-These programs can be executed through the Homebrew Channel. Homebrew must be installed on the Wii, and an application SD card must also be created. A guide to installing Homebrew and creating an application SD card can be found on the [Homebrew web site](http://wiibrew.org/wiki/Homebrew_setup).
-
 ## Usage
+
+These programs can be executed through the Homebrew Channel. Homebrew must be installed on the Wii, and an application SD card must also be created. A guide to installing Homebrew and creating an application SD card can be found on the [Homebrew web site](http://wiibrew.org/wiki/Homebrew_setup).
 
 Before being able to compile any of these programs, devkitPro must be installed. Instructions for installing devkitPro can be found on the [devkitPro web site](http://devkitpro.org/wiki/Getting_Started).
 
