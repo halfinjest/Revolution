@@ -26,7 +26,7 @@ void setup()
 	if(rmode -> viTVMode & VI_NON_INTERLACE) VIDEO_WaitVSync();
 }
 
-int main(int argc, char **argv)
+int main()
 {
 	int i, *dice = malloc(sizeof(int) * LENGTH);
 	srand(time(NULL));
