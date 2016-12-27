@@ -34,12 +34,17 @@ int main()
 	printf("\x1b[2;0H");
 	for (i = 0; i < LENGTH; i++) dice[i] = rand() % 6;
 	roll(LENGTH, dice);
-	printf("Press the HOME button to return.");
+	printf("Press the HOME button to return, or press the A button to roll again.\n");
 	while(TRUE)
 	{
 		WPAD_ScanPads();
 		u32 button = WPAD_ButtonsDown(0);
 		if (button & WPAD_BUTTON_HOME) exit(0);
+		else if (button & WPAD_BUTTON_A)
+		{
+			for (i = 0; i < LENGTH; i++) dice[i] = rand() % 6;
+			roll(LENGTH, dice);
+		}
 		VIDEO_WaitVSync();
 	}
 	return 0;
