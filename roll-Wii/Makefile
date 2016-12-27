@@ -57,9 +57,6 @@ else
 DEPENDS	:=	$(OFILES:.o=.d)
 $(OUTPUT).dol: $(OUTPUT).elf
 $(OUTPUT).elf: $(OFILES)
-%.jpg.o: %.jpg
-	@echo $(notdir $<)
-	$(bin2o)
 -include $(DEPENDS)
 
 endif
