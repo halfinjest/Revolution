@@ -6,6 +6,8 @@ These programs can be executed through the Homebrew Channel. Homebrew must be in
 
 ## Usage
 
+Before being able to compile, devkitPro must be installed. Instructions for installing devkitPro can be found on their [web site](http://devkitpro.org/wiki/Getting_Started).
+
 Navigate to the directory of the desired program, then compile it:
 
 `make`
