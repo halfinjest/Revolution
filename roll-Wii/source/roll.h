@@ -3,10 +3,11 @@
 #define INST_PIP pips[3 * (INST_ROW) + k] - '0'
 #define INST_ROW rows[3 * dice[j] + i] - '0'
 
-void roll(int length, int *dice)
+void roll(int length)
 {
 	char *pips = CONF_PIP, *rows = CONF_ROW;
-	int i, j, k;
+	int i, j, k, *dice = malloc(sizeof(int) * length);
+	for (i = 0; i < length; i++) dice[i] = rand() % 6;
 	for (i = 0; i < length; i++) printf(" __________   ");
 	printf("\n");
 	for (i = 0; i < length; i++) printf("|          |  ");
