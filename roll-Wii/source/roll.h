@@ -7,8 +7,11 @@ void roll(int length)
 {
 	char *pips = CONF_PIP, *rows = CONF_ROW;
 	int i, j, k, *dice = malloc(sizeof(int) * length);
-	for (i = 0; i < length; i++) dice[i] = rand() % 6;
-	for (i = 0; i < length; i++) printf(" __________   ");
+	for (i = 0; i < length; i++)
+	{
+		dice[i] = rand() % 6;
+		printf(" __________   ");
+	}
 	printf("\n");
 	for (i = 0; i < length; i++) printf("|          |  ");
 	printf("\n");
