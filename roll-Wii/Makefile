@@ -9,12 +9,9 @@ include $(DEVKITPPC)/wii_rules
 TARGET		=	$(notdir $(CURDIR))
 BUILD		=	build
 SOURCES		=	source
-DATA		=	data
-INCLUDES	=	include
 CFLAGS		=	-g -O2 -Wall $(MACHDEP) $(INCLUDE)
 LDFLAGS		=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 LIBS		=	-lwiiuse -lbte -logc -lm
-LIBDIRS		=
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 export OUTPUT	=	$(CURDIR)/$(TARGET)
@@ -34,11 +31,9 @@ export OUTPUT	=	$(CURDIR)/$(TARGET)
 
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
-	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@make -C $(BUILD) -f $(CURDIR)/Makefile
 
 clean: @rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
-
-run: wiiload $(TARGET).dol
 
 else
 DEPENDS = $(OFILES:.o=.d)
