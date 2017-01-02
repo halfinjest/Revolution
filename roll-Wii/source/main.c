@@ -4,9 +4,6 @@
 #include <wiiuse/wpad.h>
 #include "roll.h"
 
-#define FALSE 0
-#define TRUE 1
-
 static void *xfb = NULL;
 
 static GXRModeObj *rmode = NULL;
@@ -32,7 +29,7 @@ int main()
 	srand(time(NULL));
 	setup();
 	printf("\x1b[2;0HPress A to roll or HOME to return.\n");
-	while(TRUE)
+	while(true)
 	{
 		WPAD_ScanPads();
 		u32 button = WPAD_ButtonsDown(0);
