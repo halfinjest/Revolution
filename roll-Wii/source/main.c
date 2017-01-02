@@ -21,7 +21,7 @@ void setup()
 	VIDEO_SetBlack(FALSE);
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
-	if(rmode->viTVMode & VI_NON_INTERLACE) VIDEO_WaitVSync();
+	if (rmode->viTVMode & VI_NON_INTERLACE) VIDEO_WaitVSync();
 }
 
 int main()
@@ -29,7 +29,7 @@ int main()
 	srand(time(NULL));
 	setup();
 	printf("\x1b[2;0HPress A to roll or HOME to return.\n");
-	while(true)
+	while (true)
 	{
 		WPAD_ScanPads();
 		u32 button = WPAD_ButtonsDown(0);
