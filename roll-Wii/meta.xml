@@ -4,8 +4,8 @@
 	<coder>Jacob Allen Utley</coder>
 	<version>1.4</version>
 	<release_date></release_date>
-	<short_description>Roll for Nintendo Wii.</short_description>
-	<long_description>This is a revision of the original Roll program for the Homebrew Channel.
+	<short_description>Roll for the Nintendo Wii.</short_description>
+	<long_description>This is a revision of the Roll program for the Homebrew Channel.
 
 Four dice are rolled by default, but this can be changed depending on the size of the display.</long_description>
 </app>
