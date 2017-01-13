@@ -26,8 +26,8 @@ void setup()
 
 int main()
 {
-	srand(time(NULL));
 	setup();
+	srand(time(NULL));
 	printf("\x1b[2;0HPress A to roll or HOME to return.\n");
 	while (true)
 	{
