@@ -40,9 +40,9 @@ int main()
 		for (i = 0; i < length; i++)
 		{
 			printf("\x1b[4;%dH%c", i * 2,
-				(dice[i] == 0) ? '_' : dice[i] + '0');
+				dice[i] == 0 ? '_' : dice[i] + '0');
 			for (j = 0; j < length; j++)
-				printf("\x1b[5;%dH%c", j * 2, (place == j ? '^' : ' '));
+				printf("\x1b[5;%dH%c", j * 2, place == j ? '^' : ' ');
 		}
 		WPAD_ScanPads();
 		button = WPAD_ButtonsDown(0);
