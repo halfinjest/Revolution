@@ -1,4 +1,5 @@
 #include <gccore.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,38 +28,60 @@ void setup()
 
 int main()
 {
-	int i, digit, length = 4, rolls,
-	*dice = malloc(sizeof(int) * length);
-	char *getDice = malloc(sizeof(char) * length),
-		*newDice = malloc(sizeof(char) * length);
+	int i, j, length = 4, place = 0, rolls, getDice = 0, newDice = 0;
+	int *dice = malloc(sizeof(int) * length);
+	u32 button;
 	setup();
-	getDice = "6666";
-	for (i = 0; i < length; i++)
-	{
-		digit = getDice[i] - '0';
-		if (digit >= 1 && digit <= 6) getDice[i] = digit - 1 + '0';
-		else 
-		{
-			printf("Error: Invalid Integer\n");
-			exit(0);
-		}
-	}
+	for (i = 0; i < length; i++) dice[i] = 0;
 	srand(time(NULL));
-	printf("\x1b[2;0HPress A to roll or HOME to return.\n");
+	printf("\x1b[2;0HSpecify a permutation, and press A to roll.");
+	while (true)
+	{
+		for (i = 0; i < length; i++)
+		{
+			printf("\x1b[4;%dH%c", i * 2,
+				(dice[i] == 0) ? '_' : dice[i] + '0');
+			for (j = 0; j < length; j++)
+				printf("\x1b[5;%dH%c", j * 2, (place == j ? '^' : ' '));
+		}
+		WPAD_ScanPads();
+		button = WPAD_ButtonsDown(0);
+		if (button & WPAD_BUTTON_UP)
+		{
+			if (dice[place] == 0) dice[place] = 1;
+			else if (dice[place] < 6) dice[place]++;
+		}
+		else if (button & WPAD_BUTTON_DOWN)
+		{
+			if (dice[place] == 1) dice[place] = 0;
+			else if (dice[place] > 1) dice[place]--;
+		}
+		else if (button & WPAD_BUTTON_RIGHT && place < length - 1) place++;
+		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
+		else if (button & WPAD_BUTTON_A)
+		{
+			for (i = 0; i < length; i++)
+				getDice += (int)pow((double)10, (double)i) * dice[i];
+			if (getDice >= 1111 && getDice <= 6666) break;
+		}
+		else if (button & WPAD_BUTTON_HOME) exit(0);
+		VIDEO_WaitVSync();
+	}
+	printf("\n");
+	for (rolls = 0; getDice != newDice; rolls++)
+	{
+		newDice = 0;
+		for (i = 0; i < length; i++)
+			newDice += (int)pow((double)10, (double)i) * (rand() % 6 + 1);
+	}
+	for (i = 0; i < length; i++) dice[i]--;
+	roll(length, dice);
+	printf("%d rolls. Press HOME to return.", rolls);
 	while (true)
 	{
 		WPAD_ScanPads();
-		u32 button = WPAD_ButtonsDown(0);
-		if (button & WPAD_BUTTON_A)
-		{
-			for (rolls = 0; strcmp(getDice, newDice); rolls++)
-				for (i = 0; i < length; i++) newDice[i] = (rand() % 6) + '0';
-			for (i = 0; i < length; i++) dice[i] = getDice[i] - '0';
-			roll(length, dice);
-			memset(newDice, 0, strlen(newDice));
-			printf("%d rolls\n\n", rolls);
-		}
-		else if (button & WPAD_BUTTON_HOME) exit(0);
+		button = WPAD_ButtonsDown(0);
+		if (button & WPAD_BUTTON_HOME) exit(0);
 		VIDEO_WaitVSync();
 	}
 	return 0;
