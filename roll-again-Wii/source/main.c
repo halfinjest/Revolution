@@ -27,11 +27,11 @@ void setup()
 
 int main()
 {
-	setup();
 	int i, digit, length = 4, rolls,
 	*dice = malloc(sizeof(int) * length);
 	char *getDice = malloc(sizeof(char) * length),
 		*newDice = malloc(sizeof(char) * length);
+	setup();
 	getDice = "6666";
 	for (i = 0; i < length; i++)
 	{
