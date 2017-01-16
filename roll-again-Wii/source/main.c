@@ -60,9 +60,14 @@ int main()
 		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
 		else if (button & WPAD_BUTTON_A)
 		{
-			for (i = 0; i < length; i++)
-				getDice += (int)pow((double)10, (double)i) * dice[i];
-			if (getDice >= 1111 && getDice <= 6666) break;
+			for (i = 0, j = 0; i < length; i++)
+				if (dice[i] >= 1 && dice[i] <= 6) j++;
+			if (j == 4)
+			{
+				for (i = 0; i < length; i++)
+					getDice += (int)pow((double)10, (double)i) * dice[i];
+				break;
+			}
 		}
 		else if (button & WPAD_BUTTON_HOME) exit(0);
 		VIDEO_WaitVSync();
