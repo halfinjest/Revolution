@@ -16,4 +16,4 @@ A directory for this program is made under the `apps` directory on the SD card.
 
 The `.dol` file is copied to this new directory as `boot.dol`.
 
-Optionally, the `icon.png` and `meta.xml` files can also be copied to this directory. This information shows up on the Homebrew menu, but it is not necessary when executing an application.
+Optionally, the `icon.png` and `meta.xml` files can also be copied to this directory. This information shows up on the Homebrew menu, but it is not necessary when executing the program.
