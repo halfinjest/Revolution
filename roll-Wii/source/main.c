@@ -26,13 +26,14 @@ void setup()
 
 int main()
 {
+	u32 button;
 	setup();
 	srand(time(NULL));
 	printf("\x1b[2;0HPress A to roll or HOME to return.\n");
 	while (true)
 	{
 		WPAD_ScanPads();
-		u32 button = WPAD_ButtonsDown(0);
+		button = WPAD_ButtonsDown(0);
 		if (button & WPAD_BUTTON_A) roll(4);
 		else if (button & WPAD_BUTTON_HOME) exit(0);
 		VIDEO_WaitVSync();
