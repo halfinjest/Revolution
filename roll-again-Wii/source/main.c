@@ -28,7 +28,7 @@ void setup()
 
 int main()
 {
-	int i, j, length = 4, place = 0, digit, rolls, getDice = 0, newDice,
+	int digit, getDice = 0, i, j, length = 4, newDice, place = 0, rolls,
 		*dice = malloc(sizeof(int) * length);
 	u32 button;
 	setup();
