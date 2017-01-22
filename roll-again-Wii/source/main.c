@@ -28,8 +28,8 @@ void setup()
 
 int main()
 {
-	int i, j, length = 4, place = 0, rolls, getDice = 0, newDice = 0;
-	int *dice = malloc(sizeof(int) * length);
+	int i, j, length = 4, place = 0, rolls, getDice = 0, newDice,
+		*dice = malloc(sizeof(int) * length);
 	u32 button;
 	setup();
 	for (i = 0; i < length; i++) dice[i] = 0;
