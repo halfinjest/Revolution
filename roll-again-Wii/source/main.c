@@ -28,7 +28,7 @@ void setup()
 
 int main()
 {
-	int i, j, length = 4, place = 0, rolls, getDice = 0, newDice,
+	int i, j, length = 4, place = 0, digit, rolls, getDice = 0, newDice,
 		*dice = malloc(sizeof(int) * length);
 	u32 button;
 	setup();
@@ -39,8 +39,8 @@ int main()
 	{
 		for (i = 0; i < length; i++)
 		{
-			printf("\x1b[4;%dH%c", i * 2,
-				dice[i] == 0 ? '_' : dice[i] + '0');
+			digit = dice[i];
+			printf("\x1b[4;%dH%c", i * 2, digit ? digit + '0' : '_');
 			for (j = 0; j < length; j++)
 				printf("\x1b[5;%dH%c", j * 2, place == j ? '^' : ' ');
 		}
@@ -48,21 +48,26 @@ int main()
 		button = WPAD_ButtonsDown(0);
 		if (button & WPAD_BUTTON_UP)
 		{
-			if (dice[place] == 0) dice[place] = 1;
-			else if (dice[place] < 6) dice[place]++;
+			digit = dice[place];
+			if (digit == 0) dice[place] = 1;
+			else if (digit < 6) dice[place]++;
 		}
 		else if (button & WPAD_BUTTON_DOWN)
 		{
-			if (dice[place] == 1) dice[place] = 0;
-			else if (dice[place] > 1) dice[place]--;
+			digit = dice[place];
+			if (digit == 1) dice[place] = 0;
+			else if (digit > 1) dice[place]--;
 		}
 		else if (button & WPAD_BUTTON_RIGHT && place < length - 1) place++;
 		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
 		else if (button & WPAD_BUTTON_A)
 		{
 			for (i = 0, j = 0; i < length; i++)
-				if (dice[i] >= 1 && dice[i] <= 6) j++;
-			if (j == 4)
+			{
+				digit = dice[i];
+				if (digit >= 1 && digit <= 6) j++;
+			}
+			if (j == length)
 			{
 				for (i = 0; i < length; i++)
 					getDice += (int)pow((double)10, (double)i) * dice[i];
