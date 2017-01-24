@@ -34,7 +34,11 @@ int main()
 	{
 		WPAD_ScanPads();
 		button = WPAD_ButtonsDown(0);
-		if (button & WPAD_BUTTON_A) roll(4);
+		if (button & WPAD_BUTTON_A)
+		{
+			roll(4);
+			printf("\n\n");
+		}
 		else if (button & WPAD_BUTTON_HOME) exit(0);
 		VIDEO_WaitVSync();
 	}
