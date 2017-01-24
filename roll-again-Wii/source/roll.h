@@ -22,5 +22,4 @@ void roll(int length, int *dice)
 		printf("\n");
 	}
 	for (i = 0; i < length; i++) printf("  |__________|");
-	printf("\n\n");
 }

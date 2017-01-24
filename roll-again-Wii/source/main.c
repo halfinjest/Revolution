@@ -86,7 +86,7 @@ int main()
 	}
 	for (i = 0; i < length; i++) dice[i]--;
 	roll(length, dice);
-	printf("%d rolls. Press HOME to return.", rolls);
+	printf("\n\n%d rolls. Press HOME to return.", rolls);
 	while (true)
 	{
 		WPAD_ScanPads();
