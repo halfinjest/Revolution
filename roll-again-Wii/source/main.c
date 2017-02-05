@@ -70,7 +70,7 @@ int main()
 			if (j == length)
 			{
 				for (i = 0; i < length; i++)
-					getDice += (int)pow((double)10, (double)i) * dice[i];
+					getDice += pow(10, i) * dice[i];
 				break;
 			}
 		}
@@ -78,11 +78,10 @@ int main()
 		VIDEO_WaitVSync();
 	}
 	printf("\n");
-	for (rolls = 0; getDice != newDice; rolls++)
+	for (rolls = 0; newDice != getDice; rolls++)
 	{
 		newDice = 0;
-		for (i = 0; i < length; i++)
-			newDice += (int)pow((double)10, (double)i) * (rand() % 6 + 1);
+		for (i = 0; i < length; i++) newDice += pow(10, i) * (rand() % 6 + 1);
 	}
 	for (i = 0; i < length; i++) dice[i]--;
 	roll(length, dice);
