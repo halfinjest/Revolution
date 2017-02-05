@@ -46,18 +46,8 @@ int main()
 		}
 		WPAD_ScanPads();
 		button = WPAD_ButtonsDown(0);
-		if (button & WPAD_BUTTON_UP)
-		{
-			digit = dice[place];
-			if (digit == 0) dice[place] = 1;
-			else if (digit < 6) dice[place]++;
-		}
-		else if (button & WPAD_BUTTON_DOWN)
-		{
-			digit = dice[place];
-			if (digit == 1) dice[place] = 0;
-			else if (digit > 1) dice[place]--;
-		}
+		if (button & WPAD_BUTTON_UP && dice[place] < 6) dice[place]++;
+		else if (button & WPAD_BUTTON_DOWN && dice[place] >= 1) dice[place]--;
 		else if (button & WPAD_BUTTON_RIGHT && place < length - 1) place++;
 		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
 		else if (button & WPAD_BUTTON_A)
@@ -69,8 +59,7 @@ int main()
 			}
 			if (j == length)
 			{
-				for (i = 0; i < length; i++)
-					getDice += pow(10, i) * dice[i];
+				for (i = 0; i < length; i++) getDice += pow(10, i) * dice[i];
 				break;
 			}
 		}

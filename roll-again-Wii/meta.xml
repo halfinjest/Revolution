@@ -2,7 +2,7 @@
 <app version="1">
 	<name>roll-again-Wii</name>
 	<coder>Jacob Allen Utley</coder>
-	<version>1.5</version>
+	<version>1.6</version>
 	<release_date></release_date>
 	<short_description>Roll-again for the Nintendo Wii.</short_description>
 	<long_description>This is a revision of the roll-again program for the Homebrew Channel.
