@@ -53,10 +53,7 @@ int main()
 		else if (button & WPAD_BUTTON_A)
 		{
 			for (i = 0, j = 0; i < length; i++)
-			{
-				digit = dice[i];
-				if (digit >= 1 && digit <= 6) j++;
-			}
+				if (dice[i] >= 1 && dice[i] <= 6) j++;
 			if (j == length)
 			{
 				for (i = 0; i < length; i++) getDice += pow(10, i) * dice[i];
