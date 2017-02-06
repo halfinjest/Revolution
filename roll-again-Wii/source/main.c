@@ -28,7 +28,7 @@ void setup()
 
 int main()
 {
-	int digit, getDice = 0, i, j, length = 4, newDice, place = 0, rolls,
+	int getDice = 0, i, j, length = 4, newDice, place = 0, rolls,
 		*dice = malloc(sizeof(int) * length);
 	u32 button;
 	setup();
@@ -39,8 +39,7 @@ int main()
 	{
 		for (i = 0; i < length; i++)
 		{
-			digit = dice[i];
-			printf("\x1b[4;%dH%c", i * 2, digit ? digit + '0' : '_');
+			printf("\x1b[4;%dH%c", i * 2, dice[i] ? dice[i] + '0' : '_');
 			for (j = 0; j < length; j++)
 				printf("\x1b[5;%dH%c", j * 2, place == j ? '^' : ' ');
 		}
