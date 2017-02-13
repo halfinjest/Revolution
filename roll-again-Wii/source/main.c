@@ -44,7 +44,7 @@ int main()
 		{
 			printf("\x1b[4;%dH%c", i * 2, dice[i] ? dice[i] + '0' : '_');
 			for (j = 0; j < length; j++)
-				printf("\x1b[5;%dH%c", j * 2, place == j ? '^' : ' ');
+				printf("\x1b[5;%dH%c", j * 2, j == place ? '^' : ' ');
 		}
 		WPAD_ScanPads();
 		button = WPAD_ButtonsDown(0);
