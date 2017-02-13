@@ -66,6 +66,7 @@ int main()
 		else if (button & WPAD_BUTTON_MINUS && place < length - 1)
 		{
 			length--;
+			dice[length] = 0;
 			printf("\x1b[4;%dH ", length * 2);
 		}
 		else if (button & WPAD_BUTTON_HOME) exit(0);

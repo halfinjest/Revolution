@@ -2,10 +2,10 @@
 <app version="1">
 	<name>roll-again-Wii</name>
 	<coder>Jacob Allen Utley</coder>
-	<version>1.7</version>
+	<version>1.8</version>
 	<release_date></release_date>
 	<short_description>Roll-again for the Nintendo Wii.</short_description>
 	<long_description>This is a revision of the roll-again program for the Homebrew Channel.
 
-Dice are rolled until the specified permutation has been rolled. The permutation is specified using the directional pad on the Wii remote.</long_description>
+Dice are rolled until the specified permutation has been rolled. The permutation is specified using the directional pad, the plus button, and the minus button on the Wii remote.</long_description>
 </app>
