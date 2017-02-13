@@ -37,6 +37,9 @@ int main()
 	printf("\x1b[2;0HSpecify a permutation, and press A to roll.");
 	while (true)
 	{
+		dice = (int *)realloc(dice, sizeof(int) * length);
+		for (i = 0; i < length; i++)
+			dice[i] = dice[i] >= 1 && dice[i] <= 6 ? dice[i] : 0;
 		for (i = 0; i < length; i++)
 		{
 			printf("\x1b[4;%dH%c", i * 2, dice[i] ? dice[i] + '0' : '_');
@@ -58,6 +61,12 @@ int main()
 				for (i = 0; i < length; i++) getDice += pow(10, i) * dice[i];
 				break;
 			}
+		}
+		else if (button & WPAD_BUTTON_PLUS) length++;
+		else if (button & WPAD_BUTTON_MINUS && place < length - 1)
+		{
+			length--;
+			printf("\x1b[4;%dH ", length * 2);
 		}
 		else if (button & WPAD_BUTTON_HOME) exit(0);
 		VIDEO_WaitVSync();
