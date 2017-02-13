@@ -28,13 +28,13 @@ void setup()
 
 int main()
 {
-	int getDice = 0, i, j, length = 4, newDice, place = 0, rolls,
+	int display, getDice = 0, i, j, length = 4, newDice, place = 0, rolls,
 		*dice = malloc(sizeof(int) * length);
 	u32 button;
 	setup();
 	for (i = 0; i < length; i++) dice[i] = 0;
 	srand(time(NULL));
-	printf("\x1b[2;0HSpecify a permutation, and press A to roll.");
+	printf("\x1b[2;0HSpecify a permutation, and press A or B to roll.");
 	while (true)
 	{
 		dice = (int *)realloc(dice, sizeof(int) * length);
@@ -59,6 +59,18 @@ int main()
 			if (j == length)
 			{
 				for (i = 0; i < length; i++) getDice += pow(10, i) * dice[i];
+				display = 1;
+				break;
+			}
+		}
+		else if (button & WPAD_BUTTON_B)
+		{
+			for (i = 0, j = 0; i < length; i++)
+				if (dice[i] >= 1 && dice[i] <= 6) j++;
+			if (j == length)
+			{
+				for (i = 0; i < length; i++) getDice += pow(10, i) * dice[i];
+				display = 0;
 				break;
 			}
 		}
@@ -78,9 +90,13 @@ int main()
 		newDice = 0;
 		for (i = 0; i < length; i++) newDice += pow(10, i) * (rand() % 6 + 1);
 	}
-	for (i = 0; i < length; i++) dice[i]--;
-	roll(length, dice);
-	printf("\n\n%d rolls. Press HOME to return.", rolls);
+	if (display)
+	{
+		for (i = 0; i < length; i++) dice[i]--;
+		roll(length, dice);
+		printf("\n\n");
+	}
+	printf("%d rolls. Press HOME to return.", rolls);
 	while (true)
 	{
 		WPAD_ScanPads();
