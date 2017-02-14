@@ -93,7 +93,7 @@ int main()
 		roll(length, dice);
 		printf("\n\n");
 	}
-	printf("%d rolls. Press HOME to return.", rolls);
+	printf("%d rolls. Press HOME to exit.", rolls);
 	while (true)
 	{
 		WPAD_ScanPads();
