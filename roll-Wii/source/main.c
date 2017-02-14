@@ -29,7 +29,7 @@ int main()
 	u32 button;
 	setup();
 	srand(time(NULL));
-	printf("\x1b[2;0HPress A to roll or HOME to return.\n");
+	printf("\x1b[2;0HPress A to roll or HOME to exit.\n");
 	while (true)
 	{
 		WPAD_ScanPads();
