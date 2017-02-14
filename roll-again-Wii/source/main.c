@@ -32,7 +32,6 @@ int main()
 		*dice = malloc(sizeof(int) * length);
 	u32 button;
 	setup();
-	for (i = 0; i < length; i++) dice[i] = 0;
 	srand(time(NULL));
 	printf("\x1b[2;0HSpecify a permutation, and press A or B to roll.");
 	while (true)
