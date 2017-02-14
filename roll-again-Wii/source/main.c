@@ -48,17 +48,13 @@ int main()
 		}
 		WPAD_ScanPads();
 		button = WPAD_ButtonsDown(0);
-		if (button & WPAD_BUTTON_UP && dice[place] < 6) dice[place]++;
-		else if (button & WPAD_BUTTON_DOWN && dice[place] >= 1) dice[place]--;
-		else if (button & WPAD_BUTTON_RIGHT && place < length - 1) place++;
-		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
-		else if (button & WPAD_BUTTON_A)
+		if (button & WPAD_BUTTON_A)
 		{
 			for (i = 0, j = 0; i < length; i++)
 				if (dice[i] >= 1 && dice[i] <= 6) j++;
 			if (j == length)
 			{
-				for (i = 0; i < length; i++) getDice += pow(10, i) * dice[i];
+				for (i = 0; i < length; i++) getDice += dice[i] * pow(10, i);
 				display = 1;
 				break;
 			}
@@ -69,26 +65,30 @@ int main()
 				if (dice[i] >= 1 && dice[i] <= 6) j++;
 			if (j == length)
 			{
-				for (i = 0; i < length; i++) getDice += pow(10, i) * dice[i];
+				for (i = 0; i < length; i++) getDice += dice[i] * pow(10, i);
 				display = 0;
 				break;
 			}
 		}
-		else if (button & WPAD_BUTTON_PLUS) length++;
+		else if (button & WPAD_BUTTON_DOWN && dice[place] >= 1) dice[place]--;
+		else if (button & WPAD_BUTTON_HOME) exit(0);
+		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
 		else if (button & WPAD_BUTTON_MINUS && place < length - 1)
 		{
 			length--;
 			dice[length] = 0;
 			printf("\x1b[4;%dH ", length * 2);
 		}
-		else if (button & WPAD_BUTTON_HOME) exit(0);
+		else if (button & WPAD_BUTTON_PLUS) length++;
+		else if (button & WPAD_BUTTON_RIGHT && place < length - 1) place++;
+		else if (button & WPAD_BUTTON_UP && dice[place] < 6) dice[place]++;
 		VIDEO_WaitVSync();
 	}
 	printf("\n");
 	for (rolls = 0; newDice != getDice; rolls++)
 	{
 		newDice = 0;
-		for (i = 0; i < length; i++) newDice += pow(10, i) * (rand() % 6 + 1);
+		for (i = 0; i < length; i++) newDice += (rand() % 6 + 1) * pow(10, i);
 	}
 	if (display)
 	{
