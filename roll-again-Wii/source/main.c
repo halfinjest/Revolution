@@ -41,11 +41,8 @@ int main()
 		for (i = 0; i < length; i++)
 			dice[i] = dice[i] >= 1 && dice[i] <= 6 ? dice[i] : 0;
 		for (i = 0; i < length; i++)
-		{
-			printf("\x1b[4;%dH%c", i * 2, dice[i] ? dice[i] + '0' : '_');
-			for (j = 0; j < length; j++)
-				printf("\x1b[5;%dH%c", j * 2, j == place ? '^' : ' ');
-		}
+			printf("\x1b[4;%dH%c\x1b[5;%dH%c", i * 2,
+				dice[i] ? dice[i] + '0' : '_', i * 2, i == place ? '^' : ' ');
 		WPAD_ScanPads();
 		button = WPAD_ButtonsDown(0);
 		if (button & WPAD_BUTTON_A)
