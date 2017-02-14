@@ -37,7 +37,7 @@ int main()
 	printf("\x1b[2;0HSpecify a permutation, and press A or B to roll.");
 	while (true)
 	{
-		dice = (int *)realloc(dice, sizeof(int) * length);
+		dice = realloc(dice, sizeof(int) * length);
 		for (i = 0; i < length; i++)
 			dice[i] = dice[i] >= 1 && dice[i] <= 6 ? dice[i] : 0;
 		for (i = 0; i < length; i++)
