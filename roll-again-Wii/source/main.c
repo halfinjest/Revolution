@@ -67,7 +67,11 @@ int main()
 			}
 		}
 		else if (button & WPAD_BUTTON_DOWN && dice[place] >= 1) dice[place]--;
-		else if (button & WPAD_BUTTON_HOME) exit(0);
+		else if (button & WPAD_BUTTON_HOME)
+		{
+			free(dice);
+			exit(0);
+		}
 		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
 		else if (button & WPAD_BUTTON_MINUS && place < length - 1)
 		{
@@ -92,6 +96,7 @@ int main()
 		roll(length, dice);
 		printf("\n\n");
 	}
+	free(dice);
 	printf("%d rolls. Press HOME to exit.", rolls);
 	while (true)
 	{
