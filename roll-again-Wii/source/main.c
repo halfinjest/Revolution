@@ -38,10 +38,11 @@ int main()
 	{
 		dice = realloc(dice, sizeof(int) * length);
 		for (i = 0; i < length; i++)
-			dice[i] = dice[i] >= 1 && dice[i] <= 6 ? dice[i] : 0;
-		for (i = 0; i < length; i++)
+		{
+			if (dice[i] < 1 || dice[i] > 6) dice[i] = 0;
 			printf("\x1b[4;%dH%c\x1b[5;%dH%c", i * 2,
 				dice[i] ? dice[i] + '0' : '_', i * 2, i == place ? '^' : ' ');
+		}
 		WPAD_ScanPads();
 		button = WPAD_ButtonsDown(0);
 		if (button & WPAD_BUTTON_A)
