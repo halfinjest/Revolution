@@ -3,17 +3,17 @@
 #define INST_PIP pips[3 * (INST_ROW) + k] - '0'
 #define INST_ROW rows[3 * dice[j] + i] - '0'
 
-void roll(int length, int *dice)
+void roll(int count, int *dice)
 {
 	char *pips = CONF_PIP, *rows = CONF_ROW;
 	int i, j, k;
-	for (i = 0; i < length; i++) printf("   __________ ");
+	for (i = 0; i < count; i++) printf("   __________ ");
 	printf("\n");
-	for (i = 0; i < length; i++) printf("  |          |");
+	for (i = 0; i < count; i++) printf("  |          |");
 	printf("\n");
 	for (i = 0; i < 3; i++)
 	{
-		for (j = 0; j < length; j++)
+		for (j = 0; j < count; j++)
 		{
 			printf("  |  ");
 			for (k = 0; k < 3; k++) printf(INST_PIP ? "* " : "  ");
@@ -21,5 +21,5 @@ void roll(int length, int *dice)
 		}
 		printf("\n");
 	}
-	for (i = 0; i < length; i++) printf("  |__________|");
+	for (i = 0; i < count; i++) printf("  |__________|");
 }

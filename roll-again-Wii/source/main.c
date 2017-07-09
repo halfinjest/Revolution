@@ -27,16 +27,16 @@ void setup()
 
 int main()
 {
-	int display, getDice = 0, i, j, length = 4, newDice, place = 0, rolls,
-		*dice = malloc(sizeof(int) * length);
+	int display, getDice = 0, i, j, count = 4, newDice, place = 0, rolls,
+		*dice = malloc(sizeof(int) * count);
 	u32 button;
 	setup();
 	srand(time(NULL));
 	printf("\x1b[2;0HSpecify a permutation, and press A or B to roll.");
 	while (true)
 	{
-		dice = realloc(dice, sizeof(int) * length);
-		for (i = 0; i < length; i++)
+		dice = realloc(dice, sizeof(int) * count);
+		for (i = 0; i < count; i++)
 		{
 			if (dice[i] < 1 || dice[i] > 6) dice[i] = 0;
 			printf("\x1b[4;%dH%c\x1b[5;%dH%c", i * 2,
@@ -46,22 +46,22 @@ int main()
 		button = WPAD_ButtonsDown(0);
 		if (button & WPAD_BUTTON_A)
 		{
-			for (i = 0, j = 0; i < length; i++)
+			for (i = 0, j = 0; i < count; i++)
 				if (dice[i] >= 1 && dice[i] <= 6) j++;
-			if (j == length)
+			if (j == count)
 			{
-				for (i = 0; i < length; i++) getDice += dice[i] * pow(10, i);
+				for (i = 0; i < count; i++) getDice += dice[i] * pow(10, i);
 				display = 1;
 				break;
 			}
 		}
 		else if (button & WPAD_BUTTON_B)
 		{
-			for (i = 0, j = 0; i < length; i++)
+			for (i = 0, j = 0; i < count; i++)
 				if (dice[i] >= 1 && dice[i] <= 6) j++;
-			if (j == length)
+			if (j == count)
 			{
-				for (i = 0; i < length; i++) getDice += dice[i] * pow(10, i);
+				for (i = 0; i < count; i++) getDice += dice[i] * pow(10, i);
 				display = 0;
 				break;
 			}
@@ -73,14 +73,14 @@ int main()
 			exit(0);
 		}
 		else if (button & WPAD_BUTTON_LEFT && place > 0) place--;
-		else if (button & WPAD_BUTTON_MINUS && place < length - 1)
+		else if (button & WPAD_BUTTON_MINUS && place < count - 1)
 		{
-			length--;
-			dice[length] = 0;
-			printf("\x1b[4;%dH ", length * 2);
+			count--;
+			dice[count] = 0;
+			printf("\x1b[4;%dH ", count * 2);
 		}
-		else if (button & WPAD_BUTTON_PLUS) length++;
-		else if (button & WPAD_BUTTON_RIGHT && place < length - 1) place++;
+		else if (button & WPAD_BUTTON_PLUS) count++;
+		else if (button & WPAD_BUTTON_RIGHT && place < count - 1) place++;
 		else if (button & WPAD_BUTTON_UP && dice[place] < 6) dice[place]++;
 		VIDEO_WaitVSync();
 	}
@@ -88,12 +88,12 @@ int main()
 	for (rolls = 0; newDice != getDice; rolls++)
 	{
 		newDice = 0;
-		for (i = 0; i < length; i++) newDice += (rand() % 6 + 1) * pow(10, i);
+		for (i = 0; i < count; i++) newDice += (rand() % 6 + 1) * pow(10, i);
 	}
 	if (display)
 	{
-		for (i = 0; i < length; i++) dice[i]--;
-		roll(length, dice);
+		for (i = 0; i < count; i++) dice[i]--;
+		roll(count, dice);
 		printf("\n\n");
 	}
 	free(dice);
