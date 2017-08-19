@@ -4,6 +4,8 @@
 #include <wiiuse/wpad.h>
 #include "roll.h"
 
+#define COUNT 4
+
 static void *xfb = NULL;
 
 static GXRModeObj *rmode = NULL;
@@ -36,7 +38,7 @@ int main()
 		button = WPAD_ButtonsDown(0);
 		if (button & WPAD_BUTTON_A)
 		{
-			roll(4);
+			roll(COUNT);
 			printf("\n\n");
 		}
 		else if (button & WPAD_BUTTON_HOME) exit(0);
