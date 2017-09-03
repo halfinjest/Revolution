@@ -27,7 +27,7 @@ void setup()
 
 int main()
 {
-	int display, getDice = 0, i, j, count = 4, newDice, place = 0, rolls,
+	int display, get_dice = 0, i, j, count = 4, new_dice, place = 0, rolls,
 		*dice = malloc(sizeof(int) * count);
 	u32 button;
 	setup();
@@ -50,7 +50,7 @@ int main()
 				if (dice[i] >= 1 && dice[i] <= 6) j++;
 			if (j == count)
 			{
-				for (i = 0; i < count; i++) getDice += dice[i] * pow(10, i);
+				for (i = 0; i < count; i++) get_dice += dice[i] * pow(10, i);
 				display = 1;
 				break;
 			}
@@ -61,7 +61,7 @@ int main()
 				if (dice[i] >= 1 && dice[i] <= 6) j++;
 			if (j == count)
 			{
-				for (i = 0; i < count; i++) getDice += dice[i] * pow(10, i);
+				for (i = 0; i < count; i++) get_dice += dice[i] * pow(10, i);
 				display = 0;
 				break;
 			}
@@ -85,10 +85,10 @@ int main()
 		VIDEO_WaitVSync();
 	}
 	printf("\n");
-	for (rolls = 0; newDice != getDice; rolls++)
+	for (rolls = 0; new_dice != get_dice; rolls++)
 	{
-		newDice = 0;
-		for (i = 0; i < count; i++) newDice += (rand() % 6 + 1) * pow(10, i);
+		new_dice = 0;
+		for (i = 0; i < count; i++) new_dice += (rand() % 6 + 1) * pow(10, i);
 	}
 	if (display)
 	{
